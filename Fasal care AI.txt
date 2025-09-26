@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Disease Analyzer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        .language-btn.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .diagnosis-card {
+            transition: all 0.3s ease;
+        }
+        .diagnosis-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-green-600 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <img src="https://huggingface.co/spaces/tarang001/fasalcare-ai/resolve/main/images/Screenshot_20250924-225623.png" alt="FasalCare AI logo with a plant, sun, and circuit-like element" class="w-8 h-8 hovered-element">
+                    <h1 class="text-2xl font-bold">FasalCare AI</h1>
+                </div>
+                <div class="flex space-x-4">
+                    <button class="language-btn active px-4 py-2 rounded-full" data-lang="en">English</button>
+                    <button class="language-btn px-4 py-2 rounded-full bg-white text-green-600" data-lang="hi">हिंदी</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative py-20 bg-gradient-to-r from-green-500 to-green-700 text-white overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10">
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-white blur-3xl"></div>
+            <div class="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-yellow-300 blur-3xl"></div>
+        </div>
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-5xl font-bold mb-6 relative z-10" data-lang-key="hero-title">Smart Crop <span class="text-yellow-300">Disease</span> Diagnosis</h2>
+            <p class="text-2xl mb-8 max-w-2xl mx-auto relative z-10" data-lang-key="hero-subtitle">
+                AI-powered plant health analysis with <span class="font-semibold">94% accuracy</span> in identifying diseases from images or descriptions.
+            </p>
+            <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-xl p-6">
+                <div class="flex flex-col md:flex-row gap-4 relative z-10">
+                    <textarea 
+                        class="flex-grow p-4 border-2 border-green-300 rounded-lg text-gray-800 h-32 focus:ring-2 focus:ring-yellow-400 focus:border-transparent" 
+                        placeholder="Describe crop symptoms (e.g. yellow spots on leaves, wilting plants)..." 
+                        data-lang-key="symptoms-placeholder"></textarea>
+                    <div class="flex flex-col items-center justify-center space-y-2">
+                        <button class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg flex items-center transition-all duration-300 hover:scale-105">
+                            <i data-feather="upload" class="mr-2"></i>
+                            <span data-lang-key="upload-btn">Upload Image (JPG/PNG)</span>
+                        </button>
+                        <span class="text-sm text-gray-600" data-lang-key="or-text">or</span>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center transition-all duration-300 hover:scale-105">
+                            <i data-feather="mic" class="mr-2"></i>
+                            <span data-lang-key="voice-btn">Speak Symptoms</span>
+                        </button>
+                    </div>
+                </div>
+                <button class="mt-4 w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-yellow-500/30">
+                    <i data-feather="search" class="mr-2"></i>
+                    <span data-lang-key="analyze-btn">Get Instant Diagnosis →</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="py-16 bg-gradient-to-b from-gray-50 to-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800" data-lang-key="results-title">Diagnosis Results</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Disease Card -->
+                <div class="diagnosis-card bg-white rounded-xl shadow-xl overflow-hidden border-l-4 border-green-500" data-aos="fade-up">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold text-green-700" data-lang-key="disease-name">Powdery Mildew</h3>
+                            <span class="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full" data-lang-key="confidence">90% Confidence</span>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold mb-2 text-gray-700" data-lang-key="symptoms-title">Symptoms</h4>
+                            <p class="text-gray-600" data-lang-key="symptoms-desc">
+                                White powdery spots on leaves and stems, yellowing leaves, stunted growth.
+                            </p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold mb-2 text-gray-700" data-lang-key="cause-title">Cause</h4>
+                            <p class="text-gray-600" data-lang-key="cause-desc">
+                                Fungal infection caused by Podosphaera xanthii, thrives in humid conditions with poor air circulation.
+                            </p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold mb-2 text-gray-700" data-lang-key="treatment-title">Treatment</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li data-lang-key="treatment1">Apply sulfur-based fungicides</li>
+                                <li data-lang-key="treatment2">Use neem oil solution (2 tbsp per gallon)</li>
+                                <li data-lang-key="treatment3">Remove severely infected plants</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold mb-2 text-gray-700" data-lang-key="prevention-title">Prevention</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li data-lang-key="prevention1">Ensure proper plant spacing</li>
+                                <li data-lang-key="prevention2">Water plants at the base</li>
+                                <li data-lang-key="prevention3">Use resistant varieties when available</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image/Visual Section -->
+                <div class="diagnosis-card bg-white rounded-xl shadow-xl overflow-hidden border-l-4 border-blue-500" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-6 h-full flex flex-col">
+                        <h3 class="text-xl font-bold mb-4 text-gray-800" data-lang-key="visual-title">Visual Reference</h3>
+                        <div class="flex-grow bg-gradient-to-br from-gray-50 to-gray-200 rounded-lg overflow-hidden mb-4 relative">
+                            <img src="http://static.photos/agriculture/640x360/1" alt="Disease visual reference" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <button class="bg-white/80 hover:bg-white text-green-600 p-3 rounded-full shadow-lg transition-all">
+                                    <i data-feather="maximize-2" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <div class="flex items-start">
+                                <i data-feather="alert-circle" class="text-blue-600 mr-3 mt-1"></i>
+                                <p class="text-blue-800" data-lang-key="visual-note">
+                                    Note: This is a sample diagnosis. For accurate results, provide clear images of affected plants from multiple angles.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Founders Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Our Founders</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Founder 1 -->
+                <div class="text-center">
+                    <div class="w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden border-4 border-green-500">
+                        <img src="https://huggingface.co/spaces/tarang001/fasalcare-ai/resolve/main/images/1757186893755.jpg" alt="Tarang Pandey" class="w-full h-full object-cover">
+</div>
+                    <h3 class="text-xl font-bold text-gray-800">Tarang Pandey</h3>
+                    <p class="text-green-600 font-medium">CEO & Founder</p>
+</div>
+</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+<footer class="bg-gradient-to-b from-gray-800 to-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <img src="https://huggingface.co/spaces/tarang001/fasalcare-ai/resolve/main/images/Screenshot_20250924-225623.png" alt="FasalCare AI logo with a plant, sun, and circuit-like element" class="w-6 h-6 hovered-element">
+                        <span class="text-xl font-semibold">FasalCare AI</span>
+                    </div>
+                    <p class="text-gray-400 mt-2" data-lang-key="footer-tagline">Your smart farming assistant</p>
+                </div>
+                <div class="flex space-x-8">
+                    <a href="#" class="hover:text-green-400 transition-colors flex items-center" data-lang-key="footer-link1">
+                        <i data-feather="info" class="mr-2 w-4 h-4"></i> About
+                    </a>
+                    <a href="#" class="hover:text-green-400 transition-colors flex items-center" data-lang-key="footer-link2">
+                        <i data-feather="mail" class="mr-2 w-4 h-4"></i> Contact
+                    </a>
+                    <a href="#" class="hover:text-green-400 transition-colors flex items-center" data-lang-key="footer-link3">
+                        <i data-feather="shield" class="mr-2 w-4 h-4"></i> Privacy
+                    </a>
+                    <a href="#" class="hover:text-green-400 transition-colors flex items-center" data-lang-key="footer-link4">
+                        <i data-feather="book" class="mr-2 w-4 h-4"></i> Blog
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400">
+                <p data-lang-key="footer-copyright">© 2023 CropCare AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Initialize feather icons
+        feather.replace();
+
+        // Language switching functionality
+        document.querySelectorAll('.language-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.language-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const lang = this.dataset.lang;
+                // In a real app, this would load translations from an API or JSON file
+                console.log('Switching to language:', lang);
+                
+                // Example of how language switching would work
+                if (lang === 'hi') {
+                    document.querySelector('[data-lang-key="hero-title"]').textContent = 'फसल रोग निदान';
+                    document.querySelector('[data-lang-key="hero-subtitle"]').textContent = 'तस्वीरें अपलोड करें या लक्षणों का वर्णन करें और अपनी पसंदीदा भाषा में तुरंत निदान और उपचार की सिफारिशें प्राप्त करें।';
+                    // Would continue for all text elements...
+                } else {
+                    document.querySelector('[data-lang-key="hero-title"]').textContent = 'Crop Disease Diagnosis';
+                    document.querySelector('[data-lang-key="hero-subtitle"]').textContent = 'Upload images or describe symptoms to get instant diagnosis and treatment recommendations in your preferred language.';
+                    // Would continue for all text elements...
+                }
+            });
+        });
+
+        // In a real implementation, this would connect to a backend API
+        document.querySelector('button[data-lang-key="analyze-btn"]').addEventListener('click', function() {
+            const symptoms = document.querySelector('textarea').value;
+            if (symptoms.trim() === '') {
+                alert('Please describe the symptoms or upload an image');
+                return;
+            }
+            
+            // This would be an API call in a real implementation
+            console.log('Analyzing symptoms:', symptoms);
+            
+            // Simulate API response
+            setTimeout(() => {
+                // Show results section
+                document.querySelector('#results-section').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
